@@ -120,7 +120,7 @@
 
     <script>
         async function fetchMetadata(pid, titleId, descriptionId, downloadId) {
-            const apiUrl = `https://services.phaidra.univie.ac.at/api/object/${pid}/index/dc`;
+            const apiUrl = `https://services.phaidra.univie.ac.at/api/object/o:${pid}/index/dc`;
             try {
                 const response = await fetch(apiUrl);
                 const data = await response.json();
@@ -128,7 +128,7 @@
                 // Extract title, description, and download link
                 const title = data['dce:title']?.[0]?.['value'] || 'No title available';
                 const description = data['dcterms:description']?.[0]?.['value'] || 'No description available';
-                const downloadLink = `https://phaidra.univie.ac.at/${pid}`;
+                const downloadLink = `https://phaidra.univie.ac.at/o:${pid}`;
 
                 document.getElementById(titleId).innerText = title;
                 document.getElementById(descriptionId).innerText = description;
