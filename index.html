@@ -161,7 +161,9 @@
             loader.load(modelUrl, function (gltf) {
                 const model = gltf.scene;
                 scene.add(model);
-                camera.position.z = 2;
+                camera.position.set(0, 3, 0); // Kamera direkt über dem Zentrum positionieren
+                camera.lookAt(0, 0, 0);      // Kamera auf den Ursprung ausrichten
+                camera.up.set(0, 0, -1);     // Up-Vektor anpassen
                 const controls = new THREE.OrbitControls(camera, renderer.domElement);
                 controls.enableDamping = true;
 
