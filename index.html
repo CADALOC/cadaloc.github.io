@@ -22,38 +22,33 @@
             document.getElementById("viewer2").appendChild(viewer2.canvas);
             viewer2.load("model2.splat"); // Ersetze durch deine Datei
 
-            // Funktion zum Laden von texturierten 3D-Modellen
-            function loadModel(containerId, modelPath) {
-                const scene = new THREE.Scene();
-                const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-                renderer.setSize(300, 300);
-                document.getElementById(containerId).appendChild(renderer.domElement);
+// Funktion zum Laden von texturierten 3D-Modellen
+function loadModel(containerId, modelUrl) {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(300, 300);
+    document.getElementById(containerId).appendChild(renderer.domElement);
 
-                const loader = new GLTFLoader();
-                loader.load(modelPath, function (gltf) {
-                    scene.add(gltf.scene);
-                    camera.position.z = 2;
-                    const controls = new OrbitControls(camera, renderer.domElement);
-                    controls.enableDamping = true;
+    const loader = new GLTFLoader();
+    loader.load(modelUrl, function (gltf) {
+        scene.add(gltf.scene);
+        camera.position.z = 2;
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
 
-                    function animate() {
-                        requestAnimationFrame(animate);
-                        controls.update();
-                        renderer.render(scene, camera);
-                    }
-                    animate();
-                });
-            }
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+    });
+}
 
-            // Lade 6 texturierte Modelle
-            loadModel("mesh1", "model1.glb");
-            loadModel("mesh2", "model2.glb");
-            loadModel("mesh3", "model3.glb");
-            loadModel("mesh4", "model4.glb");
-            loadModel("mesh5", "model5.glb");
-            loadModel("mesh6", "model6.glb");
-        });
+// Beispielaufruf zum Laden des Modells von Phaidra
+loadModel("mesh1", "https://services.phaidra.univie.ac.at/api/object/o:2118793/download");
+
     </script>
     <style>
         body { margin: 0; font-family: 'Inter', sans-serif; background: #f4f4f4; color: #333; }
