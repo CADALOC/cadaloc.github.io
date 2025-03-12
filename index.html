@@ -131,22 +131,34 @@
         fetchMetadata("2118794", "title2", "description2", "download2");
     </script>
 
-    <!-- Include Three.js and necessary components -->
+<!-- Include Three.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Include GLTFLoader -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <!-- Include OrbitControls -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-     <script>
+
+    <script>
+        // Function to load textured 3D models
         function loadModel(containerId, modelUrl) {
             const container = document.getElementById(containerId);
             const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
             const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-            renderer.setSize(300, 300);
+            renderer.setSize(container.clientWidth, container.clientHeight);
             container.appendChild(renderer.domElement);
+
+            // Add lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(1, 1, 1).normalize();
+            scene.add(directionalLight);
 
             const loader = new THREE.GLTFLoader();
             loader.load(modelUrl, function (gltf) {
-                scene.add(gltf.scene);
+                const model = gltf.scene;
+                scene.add(model);
                 camera.position.z = 2;
                 const controls = new THREE.OrbitControls(camera, renderer.domElement);
                 controls.enableDamping = true;
@@ -157,6 +169,8 @@
                     renderer.render(scene, camera);
                 }
                 animate();
+            }, undefined, function (error) {
+                console.error('An error occurred while loading the model:', error);
             });
         }
 
