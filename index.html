@@ -119,5 +119,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+     <script>
+        function loadModel(containerId, modelUrl) {
+            const container = document.getElementById(containerId);
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(300, 300);
+            container.appendChild(renderer.domElement);
+
+            const loader = new THREE.GLTFLoader();
+            loader.load(modelUrl, function (gltf) {
+                scene.add(gltf.scene);
+                camera.position.z = 2;
+                const controls = new THREE.OrbitControls(camera, renderer.domElement);
+                controls.enableDamping = true;
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    controls.update();
+                    renderer.render(scene, camera);
+                }
+                animate();
+            });
+        }
+
+        // Load models from Phaidra
+        loadModel("mesh1", "https://services.phaidra.univie.ac.at/api/object/o:2118793/download");
+        loadModel("mesh2", "https://services.phaidra.univie.ac.at/api/object/o:2118794/download");
+    </script>
 </body>
 </html>
