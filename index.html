@@ -123,11 +123,19 @@
             const apiUrl = `https://services.phaidra.univie.ac.at/api/object/${pid}/index/dc`;
             try {
                 const response = await fetch(apiUrl);
-                const data = await response.json();
+                const data = await response.text();
+		    const parser = new DOMParser(); // XML-Parser erstellen
+const xmlDoc = parser.parseFromString(data, "text/xml"); // XML-Text in ein DOM-Objekt parsen
 
                 // Extract title, description, and download link
-                const title = data['dce:title']?.[0]?.['value'] || 'No title available';
-                const description = data['dcterms:description']?.[0]?.['value'] || 'No description available';
+const titleElements = xmlDoc.getElementsByTagNameNS('http://purl.org/dc/elements/1.1/', 'title'); // <dc:title> Elemente im 'dc' Namespace finden
+const descriptionElements = xmlDoc.getElementsByTagNameNS('http://purl.org/dc/elements/1.1/', 'description'); // <dc:description> Elemente im 'dc' Namespace finden
+
+// Extrahiere den Textinhalt des *ersten* <dc:title> Elements (falls vorhanden)
+const title = titleElements.length > 0 ? titleElements[0].textContent : 'No title available';
+
+// Extrahiere den Textinhalt des *ersten* <dc:description> Elements (falls vorhanden)
+const description = descriptionElements.length > 0 ? descriptionElements[0].textContent : 'No description available';
                 const downloadLink = `https://phaidra.univie.ac.at/o:${pid}`;
 
                 document.getElementById(titleId).innerText = title;
