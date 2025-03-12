@@ -1,13 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <title>CADALOC Project Archive</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Import Gaussian Splat Renderer -->
+    <style>
+        body { margin: 0; font-family: 'Inter', sans-serif; background: #f4f4f4; color: #333; }
+        .header { padding: 20px; background: #0073e6; color: white; text-align: center; }
+        .title { font-size: 36px; font-weight: 600; }
+        .content { max-width: 900px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
+        .section { margin: 30px 0; }
+        .section h2 { border-bottom: 2px solid #0073e6; padding-bottom: 5px; }
+        .link { color: #0073e6; text-decoration: none; font-weight: 600; }
+        .link:hover { text-decoration: underline; }
+        .viewer-container, .mesh-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 20px; }
+        .viewer, .mesh { width: 300px; height: 300px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); }
+        .model-info { text-align: center; margin-top: 10px; }
+        .model-title { font-weight: 600; }
+        .model-description { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="title">CADALOC – archaeothanatologiCAl re-evaluation of the burial in the roman flag sanctuary (aeDes) of Augustianis at the Later tOwn parish church's Crypt (Traismauer/Austria)</h1>
+    </div>
+    <div class="content"> <!- - Content DIV beginnt -->
+        <div class="footer">
+            <p>This website serves as an interactive archive for the CADALOC project, providing access to 3D models, research findings, and data visualizations. The content presented here is part of an ongoing research initiative and may be subject to updates and revisions.</p>
+        </div>
+        <div class="section">
+            <h2>About the Project</h2>
+            <p>CADALOC steht für <strong>archaeothanatologiCAl re-evaluation of the burial in the roman flag sanctuary (aeDes) of Augustianis at the Later tOwn parish church's Crypt (Traismauer/Austria)</strong>. The project investigates a burial found in the crypt of the town parish church of Traismauer (Austria). It applies archaeothanatological, anthropological, archaeogenetic, and radiocarbon dating methods to re-evaluate previous findings and enhance our understanding of the historical context.</p>
+        </div>
+               <div class="section">
+            <h2>Publications</h2>
+            <p><a href="finalPapers.html" class="link">View Final Papers (work in progress)</a></p>
+        </div>
+        <div class="section">
+            <h2>Research and Data</h2>
+            <p>All research data is archived in the long-term repository Phaidra.</p>
+            <p><a href="https://phaidra.univie.ac.at/" class="link" target="_blank">Access the archived datasets on Phaidra</a></p>
+        <div class="section">
+<h2>3D Gaussian Splat Viewer</h2>
+            <div class="viewer-container">
+                <div id="viewer1" class="viewer"></div>
+                <div class="model-info">
+                    <div class="model-title" id="title1"></div>
+                    <div class="model-description" id="description1"></div>
+                    <a id="download1" class="link" target="_blank">Download Model</a>
+                </div>
+                <div id="viewer2" class="viewer"></div>
+                <div class="model-info">
+                    <div class="model-title" id="title2"></div>
+                    <div class="model-description" id="description2"></div>
+                    <a id="download2" class="link" target="_blank">Download Model</a>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h2>Textured 3D Models</h2>
+            <div class="mesh-container">
+               <div id="mesh1" class="mesh"></div>
+                <div class="model-info">
+                    <div class="model-title" id="meshTitle1"></div>
+                    <div class="model-description" id="meshDescription1"></div>
+                    <a id="meshDownload1" class="link" target="_blank">Download Model</a>
+                </div>
+                <div id="mesh2" class="mesh"></div>
+                <div id="mesh3" class="mesh"></div>
+                <div id="mesh4" class="mesh"></div>
+                <div id="mesh5" class="mesh"></div>
+                <div id="mesh6" class="mesh"></div>
+            </div>
+        </div>
+    </div> <!- - **Content DIV wird HIER RICHTIG GESCHLOSSEN!** -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
     <script type="module">
         import { Renderer } from "https://antimatter15.com/splat/splat.js";
 
@@ -44,99 +117,15 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-            // Fetch metadata for all models
+            // Fetch metadata for Gaussian Splat models
             fetchMetadata("2118793", "title1", "description1", "download1");
             fetchMetadata("2118794", "title2", "description2", "download2");
+
+            // Fetch metadata for Textured 3D models
+            fetchMetadata("2118793", "meshTitle1", "meshDescription1", "meshDownload1");
         });
     </script>
 
-    <style>
-        body { margin: 0; font-family: 'Inter', sans-serif; background: #f4f4f4; color: #333; }
-        .header { padding: 20px; background: #0073e6; color: white; text-align: center; }
-        .title { font-size: 36px; font-weight: 600; }
-        .content { max-width: 900px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
-        .section { margin: 30px 0; }
-        .section h2 { border-bottom: 2px solid #0073e6; padding-bottom: 5px; }
-        .link { color: #0073e6; text-decoration: none; font-weight: 600; }
-        .link:hover { text-decoration: underline; }
-        .viewer-container, .mesh-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 20px; }
-        .model-info { text-align: center; margin-top: 10px; }
-        .model-title { font-weight: 600; }
-        .model-description { margin: 5px 0; }
-        canvas { width: 100%; max-width: 300px; height: auto; border-radius: 8px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h1 class="title">CADALOC – archaeothanatologiCAl re-evaluation of the burial in the roman flag sanctuary (aeDes) of Augustianis at the Later tOwn parish church's Crypt (traismauer/austria)</h1>
-    </div>
-    <div class="content">
-        <div class="section">
-            <h2>About the Project</h2>
-            <p>CADALOC stands as acronym for <strong>archaeothanatologiCAl re-evaluation of the burial in the roman flag sanctuary (aeDes) of Augustianis at the Later tOwn parish church's Crypt (traismauer/austria)</strong>. The project investigates a burial found in the crypt of the town parish church of Traismauer (Austria). It applies archaeothanatological, anthropological, archaeogenetic, and radiocarbon dating methods to re-evaluate previous findings and enhance our understanding of the historical context.</p>
-        <p>This website serves as an interactive landing page for the CADALOC project, providing streamlined access to research findings.</p>
-        </div>
-
-        <div class="section">
-            <h2>Publications</h2>
-            <p><a href="finalPapers.html" class="link">View Final Papers (work in progress)</a></p>
-        </div>
-
-        <div class="section">
-            <h2>Research Data</h2>
-            <p>All research data is archived in the long-term repository Phaidra.</p>
-            <p><a href="https://phaidra.univie.ac.at/" class="link" target="_blank">Access the archived datasets on Phaidra</a></p>
-        </div>
-
-        <div class="section">
-            <h2>3D Gaussian Splat Viewer</h2>
-            <div class="viewer-container">
-                <div id="viewer1" class="viewer"></div>
-                <div class="model-info">
-                    <div class="model-title" id="title1"></div>
-                    <div class="model-description" id="description1"></div>
-                    <a id="download1" class="link" target="_blank">Download Model</a>
-                </div>
-                <div id="viewer2" class="viewer"></div>
-                <div class="model-info">
-                    <div class="model-title" id="title2"></div>
-                    <div class="model-description" id="description2"></div>
-                    <a id="download2" class="link" target="_blank">Download Model</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Textured 3D Models</h2>
-            <div class="mesh-container">
-                <div>
-                    <div id="mesh1" class="mesh"></div>
-                    <div class="model-info">
-                        <div class="model-title" id="title1"></div>
-                        <div class="model-description" id="description1"></div>
-                        <a id="download1" class="link" target="_blank"></a>
-                    </div>
-                </div>
-                <div id="mesh2" class="mesh"></div>
-                <div id="mesh3" class="mesh"></div>
-                <div id="mesh4" class="mesh"></div>
-                <div id="mesh5" class="mesh"></div>
-                <div id="mesh6" class="mesh"></div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Load metadata for additional models
-        fetchMetadata("2118794", "title2", "description2", "download2");
-    </script>
-
-<!-- Include Three.js library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- Include GLTFLoader -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-    <!-- Include OrbitControls -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 
     <script>
         // Function to load textured 3D models
@@ -148,11 +137,11 @@
             renderer.setSize(container.clientWidth, container.clientHeight);
             container.appendChild(renderer.domElement);
 
-            // Add lighting
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            // **Verbesserte Beleuchtung:**
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Ambient Light leicht reduziert
             scene.add(ambientLight);
-            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-            directionalLight.position.set(1, 1, 1).normalize();
+            const directionalLight = new THREE.DirectionalLight(0xfaf0e6, 1.8); // Wärmerer Farbton, höhere Intensität
+            directionalLight.position.set(1, 2, 1).normalize(); // Angepasste Position
             scene.add(directionalLight);
 
             const loader = new THREE.GLTFLoader();
@@ -174,9 +163,13 @@
             });
         }
 
-        // Load models from Phaidra
+        // Beispielaufruf zum Laden des Modells von Phaidra
         loadModel("mesh1", "https://services.phaidra.univie.ac.at/api/object/o:2118793/download");
         loadModel("mesh2", "https://services.phaidra.univie.ac.at/api/object/o:2118794/download");
+         loadModel("mesh3", "https://services.phaidra.univie.ac.at/api/object/o:2118793/download"); //Beispielhafte Wiederverwendung der URL, ggf. anpassen
+        loadModel("mesh4", "https://services.phaidra.univie.ac.at/api/object/o:2118794/download"); //Beispielhafte Wiederverwendung der URL, ggf. anpassen
+         loadModel("mesh5", "mesh5"); //Platzhalter - URL fehlt!
+        loadModel("mesh6", "mesh6"); //Platzhalter - URL fehlt!
     </script>
 </body>
 </html>
