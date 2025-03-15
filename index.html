@@ -40,13 +40,31 @@
 
         .model-title { font-weight: 600; }
         .model-description { margin: 5px 0; }
+        .download-button {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background-color: #0073e6;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: #005bb5;
+}
     </style>
 </head>
 <body>
     <div class="header">
         <h1 class="title">CADALOC Project Archive</h1>
     </div>
-    <div class="content"> <!- - Content DIV beginnt -->
+    <div class="content">
 
         <div class="section">
             <h2>About the Project</h2>
@@ -68,13 +86,13 @@
 				<div id="viewer1" class="viewer"></div>
                     <div class="model-title" id="title1"></div>
                     <div class="model-description" id="description1"></div>
-                    <a id="download1" class="link" target="_blank">Download Model</a>
+                    <a id="download1" class="download-button" target="_blank">Download Model</a>
                 </div>
                 <div class="model-unit">
 				<div id="viewer2" class="viewer"></div>
                     <div class="model-title" id="title2"></div>
                     <div class="model-description" id="description2"></div>
-                    <a id="download2" class="link" target="_blank">Download Model</a>
+                    <a id="download2" class="download-button" target="_blank">Download Model</a>
                 </div>
             </div>
         </div>
@@ -85,7 +103,7 @@
                <div id="mesh1" class="mesh"></div>
                     <div class="model-title" id="meshTitle1">3D Textured Model of a Human Burial from the Crypt at Traismauer/Austria</div>
                     <div class="model-description" id="meshDescription1">The model was generated in 2022 using Image-Based Modeling (IBM) 3D reconstruction via the Polycam app, based on a photoset captured with an iPhone 13 Pro Max.</div>
-                    <a id="meshDownload1" class="link" target="_blank">Download Model</a>
+                    <a id="meshDownload1" class="download-button" target="_blank">Download Model</a>
                 </div>
 				<div class="model-unit">
                 <div id="mesh2" class="mesh"></div>
@@ -98,7 +116,7 @@
                     <div class="footer">
             <p><a href="impressum.html" class="link">Impressum</a></p>
         </div>
-    </div> <!- - **Content DIV wird HIER RICHTIG GESCHLOSSEN!** -->
+    </div> 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
