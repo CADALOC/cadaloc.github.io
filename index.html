@@ -59,6 +59,8 @@
     background-color: #005bb5;
 }
     </style>
+<script src="https://antimatter15.com/splat/splat.js"></script>
+
 </head>
 <body>
     <div class="header">
@@ -147,20 +149,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-
-    <script type="module">
-    import { Renderer } from "https://antimatter15.com/splat/splat.js";
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const viewer1 = new Renderer();
-        document.getElementById("viewer1").appendChild(viewer1.canvas);
-        viewer1.load("https://services.phaidra.univie.ac.at/api/object/o:2122324/download");
-
-        const viewer2 = new Renderer();
-        document.getElementById("viewer2").appendChild(viewer2.canvas);
-        viewer2.load("https://services.phaidra.univie.ac.at/api/object/o:2118794/download");
-    });
+<script src="https://antimatter15.com/splat/splat.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const viewer1 = new Renderer();
+    document.getElementById("viewer1").appendChild(viewer1.canvas);
+    viewer1.load("https://services.phaidra.univie.ac.at/api/object/o:2122324/download");
+  });
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const viewer2 = new Renderer();
+    document.getElementById("viewer2").appendChild(viewer2.canvas);
+    viewer2.load("https://services.phaidra.univie.ac.at/api/object/o:2122324/download");
+  });
+</script>
+
 
     <script>
         // Function to load textured 3D models
