@@ -181,7 +181,8 @@
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   
 <script type="module">
-import { GaussianSplats3D } from 'https://cadaloc.github.io/GaussianSplats3D/build/gaussian-splats-3d.module.js';
+import * as GaussianSplatsModule from 'https://cadaloc.github.io/GaussianSplats3D/build/gaussian-splats-3d.module.js';
+const { GaussianSplats3D } = GaussianSplatsModule;
 
   document.addEventListener("DOMContentLoaded", () => {
     let viewer1;
