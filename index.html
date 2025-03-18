@@ -66,13 +66,6 @@
       left: 0;
     }
   </style>
-  <script type="importmap">
-{
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js"
-  }
-}
-</script>
 
 </head>
 <body>
@@ -179,35 +172,39 @@
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 
-  <script type="module">
-    import { GaussianSplats3D } from 'https://cadaloc.github.io/GaussianSplats3D/build/gaussian-splats-3d.module.js';
+  <script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js"
+  }
+</script>
 
-    document.addEventListener("DOMContentLoaded", () => {
-      let viewer1; // Declare outside to have access in the resize function
-      //let viewer2;  Commented out, as per previous advice
+<script type="module">
+  import GaussianSplats3D from 'https://cadaloc.github.io/GaussianSplats3D/build/gaussian-splats-3d.module.js';
 
-      function resizeCanvas() {
-        if (viewer1) {
-          viewer1.setSize(viewer1.canvas.parentElement.offsetWidth, viewer1.canvas.parentElement.offsetHeight);
-        }
+  document.addEventListener("DOMContentLoaded", () => {
+    let viewer1;
+
+    function resizeCanvas() {
+      if (viewer1) {
+        viewer1.setSize(viewer1.canvas.parentElement.offsetWidth, viewer1.canvas.parentElement.offsetHeight);
       }
+    }
 
-      // Initialize the first Gaussian Splat Viewer
-      viewer1 = new GaussianSplats3D();
-      document.getElementById("viewer1").appendChild(viewer1.canvas);
+    viewer1 = new GaussianSplats3D();
+    document.getElementById("viewer1").appendChild(viewer1.canvas);
 
-      viewer1.load("https://services.phaidra.univie.ac.at/api/object/o:2122324/download")
-        .then(() => {
-          console.log("Viewer1 successfully loaded");
-          resizeCanvas(); // Resize *after* loading
-        })
-        .catch(e => console.error("Error loading Viewer1:", e));
+    viewer1.load("https://services.phaidra.univie.ac.at/api/object/o:2122324/download")
+      .then(() => {
+        console.log("Viewer1 successfully loaded");
+        resizeCanvas();
+      })
+      .catch(e => console.error("Error loading Viewer1:", e));
 
+    window.addEventListener('resize', resizeCanvas);
+  });
+</script>
 
-      // Handle window resizes
-      window.addEventListener('resize', resizeCanvas);
-    });
-  </script>
 
   <script>
     function loadModel(containerId, modelUrl) {
