@@ -180,7 +180,7 @@
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 
   <script type="module">
-    import { GaussianSplatRenderer } from 'https://cadaloc.github.io/GaussianSplats3D/build/gaussian-splats-3d.module.js';
+    import { GaussianSplat3D } from 'https://cadaloc.github.io/GaussianSplats3D/build/gaussian-splats-3d.module.js';
 
     document.addEventListener("DOMContentLoaded", () => {
       let viewer1; // Declare outside to have access in the resize function
@@ -193,7 +193,7 @@
       }
 
       // Initialize the first Gaussian Splat Viewer
-      viewer1 = new GaussianSplatRenderer();
+      viewer1 = new GaussianSplat3D();
       document.getElementById("viewer1").appendChild(viewer1.canvas);
 
       viewer1.load("https://services.phaidra.univie.ac.at/api/object/o:2122324/download")
